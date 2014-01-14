@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 The Android Open Source Project
+/* Copyright (C) 2007-2008 The Android Open Source Project
 **
 ** This software is licensed under the terms of the GNU General Public
 ** License version 2, as published by the Free Software Foundation, and
@@ -9,12 +9,7 @@
 ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ** GNU General Public License for more details.
 */
-#ifndef _ANDROID_DISPLAY_H
-#define _ANDROID_DISPLAY_H
+#include <inttypes.h>
 
-#include "ui/console.h"
-#include "android/framebuffer.h"
-
-extern void android_display_init(DisplayState* ds, QFrameBuffer* qfbuff);
-
-#endif /* _ANDROID_DISPLAY_H */
+extern char *varint_encode(uint64_t value, char *buf);
+extern char *varint_encode_signed(int64_t value, char *buf);

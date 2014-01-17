@@ -1,7 +1,4 @@
-/*
- * Fake Win32 USB redirector
- *
- * Copyright (c) 2009 The Android Open Source Project
+/* Copyright (c) 2010 The Android Open Source Project
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,22 +19,31 @@
  * THE SOFTWARE.
  */
 
-#include "qemu-common.h"
-#include "qemu-timer.h"
-#include "monitor.h"
-#include "hw/usb.h"
+/* dummy dlopen()/dlclose()/dlsym() implementations to be used in static builds */
+#include <stddef.h>
 
-USBDevice *usb_host_device_open(const char *devname)
+void* dlopen(void)
 {
-	return NULL;
+    /* Do not return NULL to route around a bug in our SDL configure script */
+    /* mimick succesful load, then all calls to dlsym/dlvsym will fail */
+    return (void*)"XXX";
 }
 
-int usb_host_device_close(const char *devname)
+void dlclose(void)
 {
-	return 0;
 }
- 
-void usb_host_info(Monitor *mon)
+
+void* dlsym(void)
 {
-    monitor_printf(mon, "   No devices\n");
+    return NULL;
+}
+
+void* dlvsym(void)
+{
+    return NULL;
+}
+
+const char* dlerror(void)
+{
+    return "Dynamic linking not enabled !";
 }

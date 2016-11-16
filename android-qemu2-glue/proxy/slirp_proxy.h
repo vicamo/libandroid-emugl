@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 The Android Open Source Project
+/* Copyright 2016 The Android Open Source Project
 **
 ** This software is licensed under the terms of the GNU General Public
 ** License version 2, as published by the Free Software Foundation, and
@@ -9,19 +9,13 @@
 ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ** GNU General Public License for more details.
 */
-
 #pragma once
 
 #include "android/utils/compiler.h"
-
 #include <stdbool.h>
 
 ANDROID_BEGIN_HEADER
 
-#include "qemu/osdep.h"
-#include "qemu/typedefs.h"
-#include "android/framebuffer.h"
-
-bool android_display_init(DisplayState* ds, QFrameBuffer* qfbuff);
+bool qemu_android_setup_http_proxy(const char* http_proxy);
 
 ANDROID_END_HEADER
